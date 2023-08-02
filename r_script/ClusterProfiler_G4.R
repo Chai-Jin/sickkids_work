@@ -13,31 +13,31 @@ library("clusterProfiler")
 library("org.Hs.eg.db")
 library("AnnotationHub")
 
-df <- top100pval[,7:6]
-dfsample <- split(df$gene,df$cluster)
+df <- top100pval[, 7:6]
+dfsample <- split(df$gene, df$cluster)
 length(dfsample)
 
 #The output of length(dfsample) returns how many clusters you have
 #Here there at 17 clusters (0, 1, 2, 3, ~, 16)
 #I'm sure there's a better way but you have to make a line like below for each cluster
 
-dfsample$`0` = bitr(dfsample$`0`, fromType="SYMBOL", toType="ENTREZID", OrgDb="org.Hs.eg.db")
-dfsample$`1` = bitr(dfsample$`1`, fromType="SYMBOL", toType="ENTREZID", OrgDb="org.Hs.eg.db")
-dfsample$`2` = bitr(dfsample$`2`, fromType="SYMBOL", toType="ENTREZID", OrgDb="org.Hs.eg.db")
-dfsample$`3` = bitr(dfsample$`3`, fromType="SYMBOL", toType="ENTREZID", OrgDb="org.Hs.eg.db")
-dfsample$`4` = bitr(dfsample$`4`, fromType="SYMBOL", toType="ENTREZID", OrgDb="org.Hs.eg.db")
-dfsample$`5` = bitr(dfsample$`5`, fromType="SYMBOL", toType="ENTREZID", OrgDb="org.Hs.eg.db")
-dfsample$`6` = bitr(dfsample$`6`, fromType="SYMBOL", toType="ENTREZID", OrgDb="org.Hs.eg.db")
-dfsample$`7` = bitr(dfsample$`7`, fromType="SYMBOL", toType="ENTREZID", OrgDb="org.Hs.eg.db")
-dfsample$`8` = bitr(dfsample$`8`, fromType="SYMBOL", toType="ENTREZID", OrgDb="org.Hs.eg.db")
-dfsample$`9` = bitr(dfsample$`9`, fromType="SYMBOL", toType="ENTREZID", OrgDb="org.Hs.eg.db")
-dfsample$`10` = bitr(dfsample$`10`, fromType="SYMBOL", toType="ENTREZID", OrgDb="org.Hs.eg.db")
-dfsample$`11` = bitr(dfsample$`11`, fromType="SYMBOL", toType="ENTREZID", OrgDb="org.Hs.eg.db")
-dfsample$`12` = bitr(dfsample$`12`, fromType="SYMBOL", toType="ENTREZID", OrgDb="org.Hs.eg.db")
-dfsample$`13` = bitr(dfsample$`13`, fromType="SYMBOL", toType="ENTREZID", OrgDb="org.Hs.eg.db")
-dfsample$`14` = bitr(dfsample$`14`, fromType="SYMBOL", toType="ENTREZID", OrgDb="org.Hs.eg.db")
-dfsample$`15` = bitr(dfsample$`15`, fromType="SYMBOL", toType="ENTREZID", OrgDb="org.Hs.eg.db")
-dfsample$`16` = bitr(dfsample$`16`, fromType="SYMBOL", toType="ENTREZID", OrgDb="org.Hs.eg.db")
+dfsample$`0` <- bitr(dfsample$`0`, fromType = "SYMBOL", toType = "ENTREZID", OrgDb = "org.Hs.eg.db")
+dfsample$`1` <- bitr(dfsample$`1`, fromType = "SYMBOL", toType = "ENTREZID", OrgDb = "org.Hs.eg.db")
+dfsample$`2` <- bitr(dfsample$`2`, fromType = "SYMBOL", toType = "ENTREZID", OrgDb = "org.Hs.eg.db")
+dfsample$`3` <- bitr(dfsample$`3`, fromType = "SYMBOL", toType = "ENTREZID", OrgDb = "org.Hs.eg.db")
+dfsample$`4` <- bitr(dfsample$`4`, fromType = "SYMBOL", toType = "ENTREZID", OrgDb = "org.Hs.eg.db")
+dfsample$`5` <- bitr(dfsample$`5`, fromType = "SYMBOL", toType = "ENTREZID", OrgDb = "org.Hs.eg.db")
+dfsample$`6` <- bitr(dfsample$`6`, fromType = "SYMBOL", toType = "ENTREZID", OrgDb = "org.Hs.eg.db")
+dfsample$`7` <- bitr(dfsample$`7`, fromType = "SYMBOL", toType = "ENTREZID", OrgDb = "org.Hs.eg.db")
+dfsample$`8` <- bitr(dfsample$`8`, fromType = "SYMBOL", toType = "ENTREZID", OrgDb = "org.Hs.eg.db")
+dfsample$`9` <- bitr(dfsample$`9`, fromType = "SYMBOL", toType = "ENTREZID", OrgDb = "org.Hs.eg.db")
+dfsample$`10` <- bitr(dfsample$`10`, fromType = "SYMBOL", toType = "ENTREZID", OrgDb = "org.Hs.eg.db")
+dfsample$`11` <- bitr(dfsample$`11`, fromType = "SYMBOL", toType = "ENTREZID", OrgDb = "org.Hs.eg.db")
+dfsample$`12` <- bitr(dfsample$`12`, fromType = "SYMBOL", toType = "ENTREZID", OrgDb = "org.Hs.eg.db")
+dfsample$`13` <- bitr(dfsample$`13`, fromType = "SYMBOL", toType = "ENTREZID", OrgDb = "org.Hs.eg.db")
+dfsample$`14` <- bitr(dfsample$`14`, fromType = "SYMBOL", toType = "ENTREZID", OrgDb = "org.Hs.eg.db")
+dfsample$`15` <- bitr(dfsample$`15`, fromType = "SYMBOL", toType = "ENTREZID", OrgDb = "org.Hs.eg.db")
+dfsample$`16` <- bitr(dfsample$`16`, fromType = "SYMBOL", toType = "ENTREZID", OrgDb = "org.Hs.eg.db")
 
 #do the same here, a line like below for each cluster
 
