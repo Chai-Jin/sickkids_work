@@ -14,9 +14,10 @@ my_path <- "/Users/chaijinlee/Documents/Research/PUGH/"
 # my_path <- "/hpf/largeprojects/mdtaylor/chaijin/Pugh_singlecell/"
 
 ID <- c("G4_A_P_0527", "G4_A_R_0527", "G4_D_P_1303", "G4_D_R_1303", "G4_E_P_2126", "G4_E_R_2126")
+sample_number <- length(ID)
 
 #read raw files (non normalized)
-for (i in 1:length(ID)) {
+for (i in 1:sample_number) {
   assign(ID[i], readRDS(paste(my_path, ID[i], "_scRNAseq_raw.rds", sep = "")))
 }
 
