@@ -16,7 +16,7 @@ my_path <- "/Users/chaijinlee/Documents/Research/PUGH/"
 ID <- c("G4_A_P_0527", "G4_A_R_0527", "G4_D_P_1303", "G4_D_R_1303", "G4_E_P_2126", "G4_E_R_2126")
 sample_number <- length(ID)
 
-#read raw files (non normalized)
+# read raw files (non normalized)
 for (i in 1:sample_number) {
   assign(ID[i], readRDS(paste(my_path, ID[i], "_scRNAseq_raw.rds", sep = "")))
 }
@@ -27,15 +27,18 @@ colors_spanish <- c("#40407a", "#706fd3", "#f7f1e3", "#34ace0", "#33d9b2", "#2c2
 custom_colors$discrete <- c(colors_dutch, colors_spanish)
 
 
-#MERGE datasets
+# MERGE datasets
 G4_whole <- merge(G4_A_P_0527, y = c(G4_A_R_0527, G4_D_P_1303, G4_D_R_1303, G4_E_P_2126, G4_E_R_2126), add.cell.ids = c("G4_A_P_0527", "G4_A_R_0527", "G4_D_P_1303", "G4_D_R_1303", "G4_E_P_2126", "G4_E_R_2126"), project = "Integrated_G4_MBs_sc_PR")
 saveRDS(G4_whole, file = (paste(my_path, "Integrated_G4_MBs_scRNAseq_merge_raw.rds", sep = "")))
-G4_whole <- readRDS(paste(my_path, "Integrated_G4_MBs_scRNAseq_merge_raw.rds", sep = ""))
+#G4_whole <- readRDS(paste(my_path, "Integrated_G4_MBs_scRNAseq_merge_raw.rds", sep = ""))
+G4_whole <- readRDS("Integrated_G4_MBs_scRNAseq_merge_raw.rds")
 
+# normalization
+#G4_whole_final <- SCTransform(G4_whole, vars.to.regress = c("percent.mt", "S.Score", "G2M.Score"), verbose = TRUE, variable.features.n = 3000, return.only.var.genes = FALSE)
+#saveRDS(G4_whole_final, file = paste(my_path, "Integrated_G4_MBs_scRNAseq.rds", sep = ""))
+G4_whole_final <- SCTransform(G4_whole, vars.to.regress = c("percent.mt"), verbose = TRUE, variable.features.n = 3000, return.only.var.genes = FALSE)
+saveRDS(G4_whole_final, file = "Integrated_G4_MBs_scRNAseq.rds")
 
-#normalization
-G4_whole_final <- SCTransform(G4_whole, vars.to.regress = c("percent.mt", "S.Score", "G2M.Score"), verbose = TRUE, variable.features.n = 3000, return.only.var.genes = FALSE)
-saveRDS(G4_whole_final, file = paste(my_path, "Integrated_G4_MBs_scRNAseq.rds", sep = ""))
 G4_whole_final <- readRDS(paste(my_path, "Integrated_G4_MBs_scRNAseq.rds", sep = ""))
 G4_whole_final <- RunPCA(G4_whole_final, assay = "SCT")
 pdf(paste(my_path, "Integrated_G4_MBs_scRNAseq_elbow_plot.pdf", sep = ""))
